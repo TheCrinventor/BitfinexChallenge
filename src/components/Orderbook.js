@@ -145,6 +145,7 @@ class Orderbook extends Component{
   }
   render(){
     const { isFetching, orderbookBase, orderbookQuote, orderbookData } = this.props;
+    const maxTotal = orderbookData && orderbookData.bidsTotal && orderbookData.asksTotal && Math.max(orderbookData.bidsTotal, orderbookData.asksTotal);
     return (
       <Wrapper>
         <Box>
@@ -176,7 +177,7 @@ class Orderbook extends Component{
                     return +a.price >= +b.price ? -1 : 1;
                   }).map(item => {
                     total = total + item.amount;
-                    const referencePercentage = total / orderbookData.bidsTotal * 100;
+                    const referencePercentage = total / maxTotal * 100;
                     return (
                     <tr key={item.id}>
                       <td>{item.count}</td>
@@ -218,7 +219,7 @@ class Orderbook extends Component{
                     return +a.price <= +b.price ? -1 : 1;
                   }).map(item => {
                     total = total + item.amount;
-                    const referencePercentage = total / orderbookData.asksTotal * 100;
+                    const referencePercentage = total / maxTotal * 100;
                     return (
                     <tr key={item.id}>
                       <td>{toRound(item.price, 3)}</td>
