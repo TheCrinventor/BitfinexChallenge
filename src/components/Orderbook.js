@@ -1,13 +1,12 @@
 /* eslint-disable no-console */
 /* eslint-disable no-mixed-operators */
 import React, { Component } from 'react';
-import moment from 'moment';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../actions';
 import { formatCurrency, toRound } from '../utils/common';
-import { TRADE_TYPE } from '../constants/common';
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -150,7 +149,7 @@ class Orderbook extends Component{
       <Wrapper>
         <Box>
           <Header>
-            <Title>Trades</Title>
+            <Title>ORDER BOOK</Title>
             {orderbookBase && <MarketName>{orderbookBase}/{orderbookQuote}</MarketName>}
           </Header>
           <Body>
